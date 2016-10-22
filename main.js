@@ -1,7 +1,7 @@
-const hour = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson";
-const day = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
-const week = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
-const month = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
+const hour = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson";
+const day = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
+const week = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
+const month = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
 var curType = 'day';
 
 var autoref = false;
