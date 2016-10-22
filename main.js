@@ -74,3 +74,34 @@ setInterval
     },
         30000
 );
+
+function generateMap(longitude, latitude)
+{
+    var uluru = {lat: parseInt(latitude), lng: parseInt(longitude)};
+    var map = new google.maps.Map(document.getElementById('map'),
+    {
+        zoom: 4,
+        center: uluru
+    });
+    var marker = new google.maps.Marker(
+    {
+        position: uluru,
+        map: map
+        
+    });
+}
+
+function initMap()
+{
+    generateMap(0, 0);
+}
+
+Handlebars.registerHelper("ExtractLong", function(coord) {
+    return coord[0];
+});
+Handlebars.registerHelper("ExtractLat", function(coord) {
+    return coord[1];
+});
+Handlebars.registerHelper("ExtractDepth", function(coord) {
+    return coord[2];
+});

@@ -40,17 +40,27 @@
                 </div>
             </div>
             {{#each features}}
-                <h3>
+                <h3 onclick="generateMap({{ExtractLong this.geometry.coordinates}},
+                             {{ExtractLat this.geometry.coordinates}});">
                     {{this.properties.place}}
                 </h3>
                 <div class="body">
                     Magnitude: {{this.properties.mag}},
+                    Depth: {{ExtractDepth this.geometry.coordinates}} km,
                     {{Convert this.properties.time}}
                 </div>
             {{/each}}
         </div>
     </script>
+    <h4>
+        Location of the Earthquake
+    </h4>
+    <div id="map"></div>
     <script src="main.js" type="text/javascript"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDjWfjPP4Z_OaHZHtwD3ZceOVvqeNWPyPs&callback=initMap">
+    </script>
+
     <div class="row" style="border: 1px solid black">
         <div class="col-xs-4"></div>
         <div class="col-xs-4">
