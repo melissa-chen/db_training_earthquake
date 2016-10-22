@@ -1,0 +1,66 @@
+
+img {
+    display: block;
+    margin: 0 auto;
+	max-width: 75%;
+}
+
+h2 {
+	color: rgb(121,29,30);
+}
+
+h3 {
+	color: rgb(121,29,30);
+    text-align: center;
+}
+
+h1 {
+  font-size: 80px;
+  font-family: tahoma;
+  text-align: center;
+}
+
+body {
+  margin: auto;
+  text-align: center;
+}
+
+.row
+{
+	margin: auto;
+}
+
+.body{
+  margin: auto;
+  text-align: center;
+}
+
+nav a
+{
+	color:white;
+}
+
+#navbar {
+	text-align: right;
+	margin: auto;
+	color: gray;
+	background-color: black;
+}
+
+#navbar a:hover {
+	transition: 0.15s;
+	color: black;
+	background-color: white;
+	text-decoration: none;
+}
+
+li {
+	float: right;
+}
+
+.refreshbar
+{
+    margin: auto;
+    margin-right: 25%;
+    text-align: right;
+}
