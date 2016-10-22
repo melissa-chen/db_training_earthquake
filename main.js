@@ -1,21 +1,76 @@
-function getData() {
-    $.get("http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson", function(data) {
-      console.log("Called.");
+const hour = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_hour.geojson";
+const day = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson";
+const week = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson";
+const month = "http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson";
+var curType = 'day';
 
-      var source   = $("#entry-template").html();
-      var template = Handlebars.compile(source);
-      var html    = template(data);
+var autoref = false;
+const autoDisabled = 'Auto Refresh Disabled';
+const autoEnabled = 'Auto Refresh Enabled';
 
-      $("#data").html(html);
-  });
+function getData(srcStr)
+{
+    $.get(srcStr, 
+                function(data)
+                {
+                    console.log("Called.");
+                    var pageContent = $("#entry-template").html();
+                    var template = Handlebars.compile(pageContent);
+                    var htmlContent = template(data);
+
+                    $("#data").html(htmlContent);
+                }
+         );
 }
 
-$(document).ready(getData());
+function changeSrc(typeStr)
+{
+    curType = typeStr;
+    if (typeStr == 'hour')
+        getData(hour)
+    else if (typeStr == 'day')
+        getData(day)
+    else if (typeStr == 'week')
+        getData(week)
+    else if (typeStr == 'month')
+        getData(month)
+    else
+    {
+        curType = 'day';
+        getData(day);
+        console.error("Wrong Type of argument in changeSrc");
+    }
+}
+
+$(document).ready(changeSrc(curType));
 
 Handlebars.registerHelper("Convert", function(timeStamp) {
 	return new Date(timeStamp);
 });
 
-function refresh() {
-    getData();
+Handlebars.registerHelper("ChangeText", function() {
+    return autoref ? autoEnabled : autoDisabled;
+});
+
+function refresh()
+{
+    changeSrc(curType);
 }
+
+function autoRefreshChange()
+{
+    autoref = ! autoref;
+    var buttonText = autoref ? autoEnabled : autoDisabled;
+    $("#autorefbutton").html(buttonText);
+}
+
+//  Default no autorefresh. Auto Refresh happens every 30s.
+setInterval
+(
+    function() 
+    {
+        if (autoref)
+            refresh();
+    },
+        30000
+);
